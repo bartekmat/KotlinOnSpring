@@ -25,7 +25,7 @@ private fun getOrdinal(number: Int) = when {
     else -> "${number}th"
 }
 
-private fun String.toSlug() = toLowerCase() //this seems very cool! we build a function that combines several string operations
+fun String.toSlug() = toLowerCase() //this seems very cool! we build a function that combines several string operations
         .replace("\n", " ")
         .replace("[^a-z\\d\\s]".toRegex(), " ")
         .split(" ")
