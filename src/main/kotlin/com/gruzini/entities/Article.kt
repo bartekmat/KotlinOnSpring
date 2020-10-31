@@ -2,10 +2,7 @@ package com.gruzini.entities
 
 import com.gruzini.toSlug
 import java.time.LocalDateTime
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class Article (
@@ -13,7 +10,7 @@ class Article (
         var title: String,
         var headline : String,
         var content : String,
-        @ManyToOne var author : User,
+        @ManyToOne(cascade = [CascadeType.MERGE]) var author : User,
         var slug: String = title.toSlug(),
         var addedAt: LocalDateTime = LocalDateTime.now()
 )
