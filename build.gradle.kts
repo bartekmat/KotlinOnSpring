@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
 	id("org.springframework.boot") version "2.3.5.RELEASE"
@@ -7,6 +8,7 @@ plugins {
 	kotlin("plugin.spring") version "1.3.72"
 	kotlin("plugin.jpa") version "1.3.72"
 	kotlin("plugin.allopen") version "1.3.72"
+	kotlin("kapt") version "1.3.72"
 }
 
 group = "com.gruzini"
@@ -36,6 +38,8 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 	testImplementation("com.ninja-squad:springmockk:1.1.3")
+	kapt("org.springframework.boot:spring-boot-configuration-processor")
+
 }
 
 tasks.withType<Test> {

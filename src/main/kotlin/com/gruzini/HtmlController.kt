@@ -2,6 +2,7 @@ package com.gruzini
 
 import com.gruzini.entities.Article
 import com.gruzini.entities.User
+import com.gruzini.properties.BlogProperties
 import com.gruzini.repositories.ArticleRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.server.ResponseStatusException
 
 @Controller
-class HtmlController(private val repository: ArticleRepository) {
+class HtmlController(private val repository: ArticleRepository, private val properties: BlogProperties) {
 
     @GetMapping("/")
     fun blog(model : Model) : String {
-        model["title"] = "Kotlin Blog"
+        model["title"] = properties.title
         //alternatively
         //model.addAttribute("title", "Kotlin Blog")
+        model["banner"] = properties.banner
         model["articles"] = repository.findAllByOrderByAddedAtDesc().map { it.render() }
         return "blog"
     }
